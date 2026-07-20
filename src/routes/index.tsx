@@ -25,7 +25,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import logoLb from "@/assets/logo-bg.png";
-import capaHero from "@/assets/herorio.png";
+import capaHero from "@/assets/herorio.jpg";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
@@ -1399,6 +1399,8 @@ function LandingPage() {
             alt=""
             className="h-full w-full object-cover"
             style={{ objectPosition: "0% top" }}
+            fetchPriority="high"
+            decoding="async"
           />
         </div>
 
