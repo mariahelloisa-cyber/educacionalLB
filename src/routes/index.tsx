@@ -1369,15 +1369,15 @@ function LandingPage() {
       {/* HERO */}
       <section id="top" className="relative overflow-hidden bg-gradient-hero text-white">
         {/* Promo ribbon */}
-        <div className="relative z-10 border-b border-white/10 bg-black/20 backdrop-blur">
-          <div className="mx-auto flex max-w-7xl items-center justify-center gap-2 px-4 py-2.5 text-center text-xs font-medium text-white/90 md:text-sm">
+        <div className="relative z-10 border-b border-black/10 bg-white backdrop-blur">
+          <div className="mx-auto flex max-w-7xl items-center justify-center gap-2 px-4 py-2.5 text-center text-xs font-bold text-black md:text-sm">
             <Sparkles className="h-4 w-4 text-cta" />
             <span>
               <strong className="text-cta">TEMPO LIMITADO:</strong> até 50% OFF na matrícula +
               material didático incluso.{" "}
               <button
                 onClick={() => scrollTo("cursos")}
-                className="underline underline-offset-2 hover:text-white"
+                className="underline underline-offset-2 hover:text-black/70"
               >
                 Ver cursos
               </button>
@@ -1409,11 +1409,11 @@ function LandingPage() {
               Matrículas abertas 2026
             </Badge>
             <h1 className="font-display text-4xl font-extrabold leading-[1.05] md:text-6xl">
-              Para você do Rio de Janeiro.
+              <span className="text-black">Para você do Rio de Janeiro.</span>
               <br />
               <span className="text-3xl text-brand md:text-5xl">Termine seus estudos online.</span>
             </h1>
-            <p className="mt-5 max-w-xl text-base text-white/85 md:text-lg">
+            <p className="mt-5 max-w-xl text-base font-medium text-black md:text-lg">
               Torne-se profissional com cursos 100% online, diploma reconhecido e suporte do início
               ao fim.
             </p>
@@ -1431,7 +1431,7 @@ function LandingPage() {
                     <CheckCircle2 className="h-4 w-4 shrink-0" />
                     <span className="inline-block rounded-md bg-white px-2 py-0.5">{f.title}</span>
                   </div>
-                  <p className="mt-1 text-xs text-white/75 md:text-sm">{f.desc}</p>
+                  <p className="mt-1 text-xs font-medium text-black md:text-sm">{f.desc}</p>
                 </div>
               ))}
             </div>
