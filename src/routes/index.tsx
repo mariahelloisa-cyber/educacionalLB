@@ -1398,27 +1398,24 @@ function LandingPage() {
             src={capaHero}
             alt=""
             className="h-full w-full object-cover"
-            style={{ objectPosition: "30% top" }}
+            style={{ objectPosition: "0% top" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/70 via-primary/40 to-primary/70" />
         </div>
 
-        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 md:grid-cols-[1.1fr_1fr] md:gap-14 md:px-8 md:py-24">
-          {/* LEFT */}
+        <div className="relative mx-auto grid max-w-7xl items-center gap-10 pb-16 pl-4 pt-8 md:grid-cols-[1.1fr_1fr] md:gap-14 md:pb-24 md:pl-6 md:pt-10 lg:max-w-none lg:pl-16 lg:pr-56 xl:pr-80">
+          {/* TEXTOS */}
           <div className="flex flex-col">
             <Badge className="mb-5 w-fit rounded-full bg-cta/20 px-3 py-1 text-cta hover:bg-cta/25 border border-cta/30">
               Matrículas abertas 2026
             </Badge>
             <h1 className="font-display text-4xl font-extrabold leading-[1.05] md:text-6xl">
-              Termine seus estudos online.
+              Para você do Rio de Janeiro.
               <br />
-              <span className="text-3xl text-brand md:text-5xl">
-                Oportunidade para quem é do Rio de Janeiro.
-              </span>
+              <span className="text-3xl text-brand md:text-5xl">Termine seus estudos online.</span>
             </h1>
             <p className="mt-5 max-w-xl text-base text-white/85 md:text-lg">
-              Torne-se profissional com cursos 100% online, diploma reconhecido e suporte
-              do início ao fim.
+              Torne-se profissional com cursos 100% online, diploma reconhecido e suporte do início
+              ao fim.
             </p>
 
             {/* Feature grid */}
@@ -1431,7 +1428,8 @@ function LandingPage() {
               ].map((f) => (
                 <div key={f.title}>
                   <div className="flex items-center gap-2 font-display text-sm font-bold text-brand md:text-base">
-                    <CheckCircle2 className="h-4 w-4 shrink-0" /> {f.title}
+                    <CheckCircle2 className="h-4 w-4 shrink-0" />
+                    <span className="inline-block rounded-md bg-white px-2 py-0.5">{f.title}</span>
                   </div>
                   <p className="mt-1 text-xs text-white/75 md:text-sm">{f.desc}</p>
                 </div>
@@ -1439,7 +1437,7 @@ function LandingPage() {
             </div>
           </div>
 
-          {/* RIGHT — inline form card */}
+          {/* FORMULÁRIO */}
           <div className="relative">
             <div className="absolute -right-3 -top-3 z-20 flex h-20 w-20 rotate-12 items-center justify-center rounded-full bg-cta text-center font-display font-extrabold leading-tight text-cta-foreground shadow-cta md:h-24 md:w-24">
               <div>
