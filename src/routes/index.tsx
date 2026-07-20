@@ -25,6 +25,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import logoLb from "@/assets/logo-bg.png";
+import capaHero from "@/assets/herorio.png";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
@@ -1392,6 +1393,16 @@ function LandingPage() {
           }}
         />
 
+        <div className="pointer-events-none absolute inset-0">
+          <img
+            src={capaHero}
+            alt=""
+            className="h-full w-full object-cover"
+            style={{ objectPosition: "30% top" }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/70 via-primary/40 to-primary/70" />
+        </div>
+
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 md:grid-cols-[1.1fr_1fr] md:gap-14 md:px-8 md:py-24">
           {/* LEFT */}
           <div className="flex flex-col">
@@ -1399,13 +1410,14 @@ function LandingPage() {
               Matrículas abertas 2026
             </Badge>
             <h1 className="font-display text-4xl font-extrabold leading-[1.05] md:text-6xl">
-              Conclua seus estudos.
+              Termine seus estudos online.
               <br />
-              <span className="text-brand">Conquiste seu diploma.</span>
+              <span className="text-3xl text-brand md:text-5xl">
+                Oportunidade para quem é do Rio de Janeiro.
+              </span>
             </h1>
             <p className="mt-5 max-w-xl text-base text-white/85 md:text-lg">
-              Torne-se profissional com os cursos <strong>EJA</strong>, <strong>Técnicos</strong> e{" "}
-              <strong>Certificação por Competência</strong>. 100% EAD, diploma reconhecido e suporte
+              Torne-se profissional com cursos 100% online, diploma reconhecido e suporte
               do início ao fim.
             </p>
 
@@ -1507,7 +1519,7 @@ function LandingPage() {
           </div>
         </div>
 
-        <div className="relative mx-auto flex max-w-7xl justify-center border-t border-white/15 px-4 pb-16 pt-6 md:px-8 md:pb-24">
+        <div className="relative mx-auto -mt-8 flex max-w-7xl justify-center px-4 pb-8 md:-mt-14 md:px-8 md:pb-12">
           <Button
             size="lg"
             onClick={() => scrollTo("matricula")}
