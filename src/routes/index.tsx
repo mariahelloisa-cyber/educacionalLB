@@ -28,6 +28,9 @@ import logoLb from "@/assets/logo-bg.png";
 import capaHero from "@/assets/herorio.jpg";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    links: [{ rel: "preload", as: "image", href: capaHero, fetchPriority: "high" }],
+  }),
   component: LandingPage,
 });
 
