@@ -24,6 +24,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import logoLb from "@/assets/logo-bg.png";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
@@ -1551,10 +1552,24 @@ function LandingPage() {
       </section>
 
       {/* BENEFÍCIOS */}
-      <section id="beneficios" className="bg-gradient-hero py-20 text-white md:py-24">
+      <section id="beneficios" className="bg-gradient-hero pb-20 pt-6 text-white md:pb-24 md:pt-8">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <Badge className="bg-white/15 text-white hover:bg-white/25 border-white/20">
+            <div className="relative mx-auto overflow-hidden" style={{ width: 162, height: 72 }}>
+              <img
+                src={logoLb}
+                alt="Instituto Educacional LB"
+                style={{
+                  position: "absolute",
+                  left: -37,
+                  top: -66,
+                  width: 258,
+                  height: 216,
+                  maxWidth: "none",
+                }}
+              />
+            </div>
+            <Badge className="mt-2 bg-white/15 text-white hover:bg-white/25 border-white/20">
               Por que escolher a LB
             </Badge>
             <h2 className="mt-4 font-display text-3xl font-bold md:text-4xl">
