@@ -29,7 +29,7 @@ export const Route = createFileRoute("/")({
   component: LandingPage,
 });
 
-const WHATSAPP_NUMBER = "5500000000000"; // TODO: substituir pelo número real
+const WHATSAPP_NUMBER = "5521968984525";
 
 function formatBRL(value: number): string {
   return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
@@ -1497,7 +1497,7 @@ function LandingPage() {
 
                 <Button
                   type="submit"
-                  className="mt-2 h-14 rounded-xl bg-cta text-base font-extrabold uppercase tracking-wide text-cta-foreground shadow-cta hover:bg-cta/90"
+                  className="mt-2 h-14 rounded-xl bg-primary text-base font-extrabold uppercase tracking-wide text-primary-foreground shadow-elegant hover:bg-primary/90"
                 >
                   Inscreva-se agora
                 </Button>
@@ -1518,17 +1518,49 @@ function LandingPage() {
         </div>
       </section>
 
-      {/* BENEFÍCIOS */}
-      <section id="beneficios" className="py-20 md:py-24">
+      {/* CURSOS */}
+      <section id="cursos" className="bg-secondary/40 py-20 md:py-24">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <Badge variant="secondary" className="bg-brand/10 text-primary">
+            <Badge className="bg-brand text-brand-foreground hover:bg-brand">Nossos cursos</Badge>
+            <h2 className="mt-4 font-display text-3xl font-bold md:text-4xl">
+              Escolha o caminho ideal para você
+            </h2>
+            <p className="mt-4 text-muted-foreground">
+              Categorias pensadas para diferentes momentos da sua jornada.
+            </p>
+          </div>
+
+          <div className="mt-14 space-y-14">
+            {CATEGORIES.map((category) => {
+              const coursesInCategory = COURSES.filter((c) => c.category === category);
+              if (coursesInCategory.length === 0) return null;
+              return (
+                <div key={category}>
+                  <h3 className="font-display text-xl font-bold text-primary md:text-2xl">
+                    {coursesInCategory[0].categoryLabel}
+                  </h3>
+                  <div className="mt-6">
+                    <CourseCarousel courses={coursesInCategory} onOpen={setOpenCourse} />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* BENEFÍCIOS */}
+      <section id="beneficios" className="bg-gradient-hero py-20 text-white md:py-24">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <Badge className="bg-white/15 text-white hover:bg-white/25 border-white/20">
               Por que escolher a LB
             </Badge>
             <h2 className="mt-4 font-display text-3xl font-bold md:text-4xl">
               Educação séria, prática e acessível
             </h2>
-            <p className="mt-4 text-muted-foreground">
+            <p className="mt-4 text-white/85">
               Tudo o que você precisa para transformar sua carreira e sua vida.
             </p>
           </div>
@@ -1558,7 +1590,7 @@ function LandingPage() {
             ].map((b) => (
               <div
                 key={b.title}
-                className="group rounded-2xl border border-border bg-card p-6 transition hover:-translate-y-1 hover:shadow-elegant"
+                className="group rounded-2xl border border-border bg-card p-6 text-foreground transition hover:-translate-y-1 hover:shadow-elegant"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-brand text-white">
                   <b.icon className="h-6 w-6" />
@@ -1571,34 +1603,78 @@ function LandingPage() {
         </div>
       </section>
 
-      {/* CURSOS */}
-      <section id="cursos" className="bg-secondary/40 py-20 md:py-24">
+      {/* URGÊNCIA / CONSULTORIA GRATUITA */}
+      <section className="py-20 md:py-24">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <Badge className="bg-brand text-brand-foreground hover:bg-brand">Nossos cursos</Badge>
-            <h2 className="mt-4 font-display text-3xl font-bold md:text-4xl">
-              Escolha o caminho ideal para você
+            <Badge className="bg-brand text-brand-foreground hover:bg-brand">
+              Não perca mais tempo
+            </Badge>
+            <h2 className="mt-4 font-display text-3xl font-bold text-primary md:text-4xl">
+              Sua matrícula pode sair ainda hoje
             </h2>
             <p className="mt-4 text-muted-foreground">
-              Três categorias pensadas para diferentes momentos da sua jornada.
+              Enquanto você pensa, outros já estão estudando. O Instituto Educacional LB já ajudou
+              milhares de alunos a conquistarem o diploma com uma orientação simples e gratuita.
             </p>
           </div>
 
-          <div className="mt-14 space-y-14">
-            {CATEGORIES.map((category) => {
-              const coursesInCategory = COURSES.filter((c) => c.category === category);
-              if (coursesInCategory.length === 0) return null;
-              return (
-                <div key={category}>
-                  <h3 className="font-display text-xl font-bold text-primary md:text-2xl">
-                    {coursesInCategory[0].categoryLabel}
-                  </h3>
-                  <div className="mt-6">
-                    <CourseCarousel courses={coursesInCategory} onOpen={setOpenCourse} />
+          <div className="relative mx-auto mt-14 max-w-3xl">
+            <div className="animate-soft-pulse relative overflow-hidden rounded-3xl border-2 border-cta/40 bg-card p-6 shadow-elegant md:p-10">
+              <Badge className="animate-soft-float absolute right-5 top-5 bg-destructive text-white hover:bg-destructive">
+                Vagas limitadas!
+              </Badge>
+
+              <div className="text-center">
+                <h3 className="font-display text-xl font-bold text-primary md:text-2xl">
+                  🎓 Orientação Gratuita de Matrícula
+                </h3>
+                <p className="mx-auto mt-3 max-w-md text-sm text-muted-foreground md:text-base">
+                  Fale com nossa equipe agora e descubra qual curso combina com você — com{" "}
+                  <strong className="text-primary">até 50% de desconto</strong> só nesta semana.
+                </p>
+              </div>
+
+              <div className="mt-8 grid gap-4 sm:grid-cols-3">
+                {[
+                  {
+                    emoji: "⚡",
+                    title: "Matrícula rápida",
+                    desc: "Comece a estudar ainda hoje",
+                  },
+                  {
+                    emoji: "💰",
+                    title: "Parcelamento fácil",
+                    desc: "Condições que cabem no bolso",
+                  },
+                  {
+                    emoji: "🎯",
+                    title: "Curso ideal pra você",
+                    desc: "Orientação personalizada e gratuita",
+                  },
+                ].map((f) => (
+                  <div key={f.title} className="rounded-xl bg-secondary/60 p-4 text-center">
+                    <div className="text-2xl">{f.emoji}</div>
+                    <div className="mt-2 font-display text-sm font-bold text-primary">
+                      {f.title}
+                    </div>
+                    <div className="mt-1 text-xs text-muted-foreground">{f.desc}</div>
                   </div>
-                </div>
-              );
-            })}
+                ))}
+              </div>
+
+              <div className="mt-8 flex justify-center">
+                <a href={whatsappLink()} target="_blank" rel="noreferrer">
+                  <Button
+                    size="lg"
+                    className="h-14 rounded-full bg-gradient-hero px-8 text-base font-bold text-white shadow-elegant transition hover:scale-105"
+                  >
+                    🎯 Quero minha vaga agora!
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1711,7 +1787,7 @@ function LandingPage() {
               <Button
                 type="submit"
                 size="lg"
-                className="bg-cta text-cta-foreground hover:bg-cta/90 shadow-cta font-bold h-12"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-elegant font-bold h-12"
               >
                 Enviar e falar no WhatsApp
               </Button>
@@ -1808,6 +1884,7 @@ function CourseCarousel({
   onOpen: (course: Course) => void;
 }) {
   const trackRef = useRef<HTMLDivElement>(null);
+  const showArrows = courses.length > 4;
 
   const scroll = (direction: 1 | -1) => {
     const el = trackRef.current;
@@ -1817,14 +1894,16 @@ function CourseCarousel({
 
   return (
     <div className="relative">
-      <button
-        type="button"
-        aria-label="Cursos anteriores"
-        onClick={() => scroll(-1)}
-        className="absolute -left-4 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-card text-primary shadow-elegant transition hover:bg-secondary md:-left-5"
-      >
-        <ChevronLeft className="h-5 w-5" />
-      </button>
+      {showArrows && (
+        <button
+          type="button"
+          aria-label="Cursos anteriores"
+          onClick={() => scroll(-1)}
+          className="absolute -left-4 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-card text-primary shadow-elegant transition hover:bg-secondary md:-left-5"
+        >
+          <ChevronLeft className="h-5 w-5" />
+        </button>
+      )}
 
       <div
         ref={trackRef}
@@ -1840,14 +1919,16 @@ function CourseCarousel({
         ))}
       </div>
 
-      <button
-        type="button"
-        aria-label="Próximos cursos"
-        onClick={() => scroll(1)}
-        className="absolute -right-4 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-card text-primary shadow-elegant transition hover:bg-secondary md:-right-5"
-      >
-        <ChevronRight className="h-5 w-5" />
-      </button>
+      {showArrows && (
+        <button
+          type="button"
+          aria-label="Próximos cursos"
+          onClick={() => scroll(1)}
+          className="absolute -right-4 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-card text-primary shadow-elegant transition hover:bg-secondary md:-right-5"
+        >
+          <ChevronRight className="h-5 w-5" />
+        </button>
+      )}
     </div>
   );
 }
@@ -1857,7 +1938,7 @@ function CourseCard({ course, onOpen }: { course: Course; onOpen: () => void }) 
   const pricing = getPricing(course.price);
 
   return (
-    <article className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition hover:-translate-y-1 hover:shadow-elegant">
+    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition hover:-translate-y-1 hover:shadow-elegant">
       <div
         className="relative h-40 overflow-hidden bg-cover bg-center text-white"
         style={{ backgroundImage: `url(${course.image})` }}
@@ -1867,7 +1948,9 @@ function CourseCard({ course, onOpen }: { course: Course; onOpen: () => void }) 
           <Icon className="h-4 w-4" />
         </div>
         <div className="absolute inset-x-0 bottom-0 px-3 pb-2.5">
-          <Badge className="bg-cta text-cta-foreground hover:bg-cta">Diploma reconhecido</Badge>
+          <Badge className="bg-primary text-primary-foreground hover:bg-primary">
+            Diploma reconhecido
+          </Badge>
         </div>
       </div>
 
@@ -1880,7 +1963,7 @@ function CourseCard({ course, onOpen }: { course: Course; onOpen: () => void }) 
         </Badge>
         <h3 className="mt-3 font-display text-lg font-bold leading-snug">{course.title}</h3>
 
-        <div className="mt-4 border-t border-border pt-3">
+        <div className="mt-auto border-t border-border pt-3">
           <div className="text-sm text-muted-foreground">
             De <span className="line-through">{pricing.original}</span>
           </div>
@@ -1891,7 +1974,7 @@ function CourseCard({ course, onOpen }: { course: Course; onOpen: () => void }) 
 
         <div className="mt-4 flex flex-col">
           <Button
-            className="w-full bg-cta text-cta-foreground hover:bg-cta/90 shadow-cta font-semibold h-11"
+            className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-elegant font-semibold h-11"
             onClick={onOpen}
           >
             Saiba Mais
@@ -1932,7 +2015,7 @@ function CourseModal({
                   <course.icon className="h-6 w-6" />
                 </div>
                 <div className="relative z-10 p-5">
-                  <Badge className="bg-cta text-cta-foreground hover:bg-cta">
+                  <Badge className="bg-primary text-primary-foreground hover:bg-primary">
                     Diploma reconhecido
                   </Badge>
                 </div>
