@@ -2068,7 +2068,7 @@ function CourseModal({
               <DialogTitle className="font-display text-lg">Detalhes do Curso</DialogTitle>
             </DialogHeader>
 
-            <div className="grid gap-6 overflow-y-auto p-6 md:grid-cols-2 md:p-8">
+            <div className="grid min-h-0 gap-6 overflow-y-auto p-6 md:grid-cols-2 md:p-8">
               <div
                 className="relative flex aspect-square items-end overflow-hidden rounded-2xl bg-cover bg-center text-white"
                 style={{ backgroundImage: `url(${course.image})` }}
