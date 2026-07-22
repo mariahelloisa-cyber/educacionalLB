@@ -2063,12 +2063,12 @@ function CourseModal({
     <Dialog open={!!course} onOpenChange={(o) => !o && onClose()}>
       <DialogContent className="max-h-[90vh] max-w-3xl overflow-hidden p-0">
         {course && (
-          <div className="flex max-h-[90vh] flex-col">
+          <div className="flex max-h-[90vh] min-h-0 flex-col">
             <DialogHeader className="shrink-0 border-b border-border bg-secondary/40 px-6 py-4">
               <DialogTitle className="font-display text-lg">Detalhes do Curso</DialogTitle>
             </DialogHeader>
 
-            <div className="grid min-h-0 gap-6 overflow-y-auto p-6 md:grid-cols-2 md:p-8">
+            <div className="grid min-h-0 flex-1 gap-6 overflow-y-auto overscroll-contain p-6 md:grid-cols-2 md:p-8">
               <div
                 className="relative flex aspect-square items-end overflow-hidden rounded-2xl bg-cover bg-center text-white"
                 style={{ backgroundImage: `url(${course.image})` }}
