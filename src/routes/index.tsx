@@ -16,6 +16,7 @@ import {
   CreditCard,
   ChevronLeft,
   ChevronRight,
+  X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -1338,6 +1339,7 @@ const COURSES: Course[] = [
 
 function LandingPage() {
   const [openCourse, setOpenCourse] = useState<Course | null>(null);
+  const [showWhatsappTooltip, setShowWhatsappTooltip] = useState(true);
 
   const whatsappLink = useMemo(
     () => (course?: Course) =>
@@ -1368,26 +1370,38 @@ function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      {/* HERO */}
-      <section id="top" className="relative overflow-hidden bg-gradient-hero text-white">
-        {/* Promo ribbon */}
-        <div className="relative z-10 border-b border-black/10 bg-white backdrop-blur">
-          <div className="mx-auto flex max-w-7xl items-center justify-center gap-2 px-4 py-2.5 text-center text-xs font-bold text-black md:text-sm">
-            <Sparkles className="h-4 w-4 text-cta" />
-            <span>
-              <strong className="text-cta">TEMPO LIMITADO:</strong> até 50% OFF na matrícula +
-              material didático incluso.{" "}
-              <button
-                onClick={() => scrollTo("cursos")}
-                className="underline underline-offset-2 hover:text-black/70"
-              >
-                Ver cursos
-              </button>
-            </span>
-          </div>
+    <div className="min-h-screen bg-background pt-10 text-foreground">
+      {/* Promo ribbon (fixed) */}
+      <div className="fixed inset-x-0 top-0 z-50 h-10 overflow-hidden border-b border-black/10 bg-white backdrop-blur">
+        <div className="flex h-full w-max animate-marquee items-center">
+          {[0, 1].map((i) => (
+            <div
+              key={i}
+              aria-hidden={i === 1}
+              className="mr-240 flex shrink-0 items-center gap-2 whitespace-nowrap text-xs font-bold text-black md:text-sm"
+            >
+              <Sparkles className="h-4 w-4 shrink-0 text-cta" />
+              <span>
+                <strong className="text-cta">TEMPO LIMITADO:</strong> até 50% OFF na matrícula +
+                material didático incluso.{" "}
+                <button
+                  onClick={() => scrollTo("cursos")}
+                  tabIndex={i === 1 ? -1 : 0}
+                  className="underline underline-offset-2 hover:text-black/70"
+                >
+                  Ver cursos
+                </button>
+              </span>
+            </div>
+          ))}
         </div>
+      </div>
 
+      {/* HERO */}
+      <section
+        id="top"
+        className="relative min-h-[560px] scroll-mt-10 overflow-hidden bg-gradient-hero text-white md:min-h-[640px] lg:min-h-[720px]"
+      >
         <div
           className="pointer-events-none absolute inset-0 opacity-20"
           style={{
@@ -1407,7 +1421,7 @@ function LandingPage() {
           />
         </div>
 
-        <div className="relative mx-auto grid max-w-7xl items-center gap-10 pb-16 pl-4 pt-8 md:grid-cols-[1.1fr_1fr] md:gap-14 md:pb-24 md:pl-6 md:pt-10 lg:max-w-none lg:pl-16 lg:pr-56 xl:pr-80">
+        <div className="relative mx-auto grid max-w-7xl items-center gap-10 pb-16 pl-4 pt-8 md:grid-cols-[1.1fr_1fr] md:gap-14 md:pb-24 md:pl-6 md:pt-10 lg:max-w-[1600px] lg:pl-16 lg:pr-56 xl:pr-80 2xl:max-w-[1800px]">
           {/* TEXTOS */}
           <div className="flex flex-col">
             <Badge className="mb-5 w-fit rounded-full bg-cta/20 px-3 py-1 text-cta hover:bg-cta/25 border border-cta/30">
@@ -1535,7 +1549,7 @@ function LandingPage() {
       </section>
 
       {/* CURSOS */}
-      <section id="cursos" className="bg-secondary/40 py-20 md:py-24">
+      <section id="cursos" className="scroll-mt-10 bg-secondary/40 py-20 md:py-24">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <Badge className="bg-brand text-brand-foreground hover:bg-brand">Nossos cursos</Badge>
@@ -1567,7 +1581,10 @@ function LandingPage() {
       </section>
 
       {/* BENEFÍCIOS */}
-      <section id="beneficios" className="bg-gradient-hero pb-20 pt-6 text-white md:pb-24 md:pt-8">
+      <section
+        id="beneficios"
+        className="scroll-mt-10 bg-gradient-hero pb-20 pt-6 text-white md:pb-24 md:pt-8"
+      >
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <div className="relative mx-auto overflow-hidden" style={{ width: 162, height: 72 }}>
@@ -1712,11 +1729,11 @@ function LandingPage() {
       {/* MATRÍCULA */}
       <section
         id="matricula"
-        className="relative overflow-hidden bg-gradient-hero py-20 text-white md:py-24"
+        className="relative scroll-mt-10 overflow-hidden bg-gradient-hero py-20 text-white md:py-24"
       >
         <div className="mx-auto grid max-w-6xl gap-12 px-4 md:grid-cols-2 md:px-8">
           <div>
-            <Badge className="mb-4 bg-white/15 text-white hover:bg-white/25 border-white/20">
+            <Badge className="mb-4 rounded-full bg-cta/20 px-3 py-1 text-cta hover:bg-cta/25 border border-cta/30">
               Matrícula rápida
             </Badge>
             <h2 className="font-display text-3xl font-bold md:text-4xl">
@@ -1744,7 +1761,7 @@ function LandingPage() {
               href={whatsappLink()}
               target="_blank"
               rel="noreferrer"
-              className="mt-10 inline-flex items-center gap-3 rounded-lg bg-white/10 px-5 py-3 text-sm font-medium backdrop-blur transition hover:bg-white/20"
+              className="mt-10 inline-flex items-center gap-3 rounded-lg bg-cta px-5 py-3 text-sm font-bold text-cta-foreground shadow-cta transition hover:bg-cta/90"
             >
               <Phone className="h-4 w-4" /> Prefere falar direto? Chame no WhatsApp
             </a>
@@ -1841,7 +1858,7 @@ function LandingPage() {
           </p>
           <button
             onClick={() => scrollTo("matricula")}
-            className="mt-6 inline-flex items-center gap-3 rounded-full bg-white px-10 py-5 text-base font-semibold text-black transition hover:bg-white/90 md:px-12 md:py-6 md:text-lg"
+            className="mt-6 inline-flex items-center gap-3 rounded-full bg-cta px-10 py-5 text-base font-bold text-cta-foreground shadow-cta transition hover:bg-cta/90 md:px-12 md:py-6 md:text-lg"
           >
             Fazer matrícula
             <ArrowRight className="h-5 w-5" />
@@ -1885,17 +1902,33 @@ function LandingPage() {
       </footer>
 
       {/* FLOATING WHATSAPP */}
-      <a
-        href={whatsappLink()}
-        target="_blank"
-        rel="noreferrer"
-        aria-label="Falar no WhatsApp"
-        className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-elegant transition hover:scale-110"
-      >
-        <svg viewBox="0 0 32 32" className="h-7 w-7 fill-current">
-          <path d="M19.11 17.31c-.29-.15-1.7-.84-1.97-.94-.26-.1-.46-.15-.65.15-.19.29-.74.94-.91 1.13-.17.19-.34.22-.63.07-.29-.15-1.22-.45-2.32-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.65-1.57-.89-2.15-.24-.57-.48-.5-.65-.5-.17-.01-.36-.01-.55-.01-.19 0-.51.07-.77.36-.26.29-1 .98-1 2.4 0 1.42 1.03 2.78 1.17 2.98.14.19 2.02 3.09 4.9 4.33.69.3 1.22.48 1.64.61.69.22 1.31.19 1.81.11.55-.08 1.7-.7 1.94-1.37.24-.68.24-1.25.17-1.37-.07-.12-.26-.19-.55-.34zM16.03 5C9.94 5 5 9.94 5 16.03c0 1.94.51 3.83 1.47 5.5L5 27l5.62-1.47a10.94 10.94 0 0 0 5.41 1.37c6.09 0 11.03-4.94 11.03-11.03S22.12 5 16.03 5z" />
-        </svg>
-      </a>
+      <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
+        {showWhatsappTooltip && (
+          <div className="relative rounded-2xl bg-white px-4 py-3 pr-8 shadow-elegant">
+            <button
+              type="button"
+              onClick={() => setShowWhatsappTooltip(false)}
+              aria-label="Fechar"
+              className="absolute right-1.5 top-1.5 flex h-5 w-5 items-center justify-center rounded-full text-slate-400 transition hover:bg-slate-100 hover:text-slate-600"
+            >
+              <X className="h-3.5 w-3.5" />
+            </button>
+            <p className="text-sm font-semibold text-slate-800">Fale com um consultor</p>
+            <span className="absolute -bottom-1.5 right-7 h-3 w-3 rotate-45 bg-white" />
+          </div>
+        )}
+        <a
+          href={whatsappLink()}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Falar no WhatsApp"
+          className="flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-elegant transition hover:scale-110"
+        >
+          <svg viewBox="0 0 32 32" className="h-7 w-7 fill-current">
+            <path d="M19.11 17.31c-.29-.15-1.7-.84-1.97-.94-.26-.1-.46-.15-.65.15-.19.29-.74.94-.91 1.13-.17.19-.34.22-.63.07-.29-.15-1.22-.45-2.32-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.65-1.57-.89-2.15-.24-.57-.48-.5-.65-.5-.17-.01-.36-.01-.55-.01-.19 0-.51.07-.77.36-.26.29-1 .98-1 2.4 0 1.42 1.03 2.78 1.17 2.98.14.19 2.02 3.09 4.9 4.33.69.3 1.22.48 1.64.61.69.22 1.31.19 1.81.11.55-.08 1.7-.7 1.94-1.37.24-.68.24-1.25.17-1.37-.07-.12-.26-.19-.55-.34zM16.03 5C9.94 5 5 9.94 5 16.03c0 1.94.51 3.83 1.47 5.5L5 27l5.62-1.47a10.94 10.94 0 0 0 5.41 1.37c6.09 0 11.03-4.94 11.03-11.03S22.12 5 16.03 5z" />
+          </svg>
+        </a>
+      </div>
 
       <CourseModal
         course={openCourse}
@@ -2028,14 +2061,14 @@ function CourseModal({
 
   return (
     <Dialog open={!!course} onOpenChange={(o) => !o && onClose()}>
-      <DialogContent className="max-w-3xl overflow-hidden p-0">
+      <DialogContent className="max-h-[90vh] max-w-3xl overflow-hidden p-0">
         {course && (
-          <>
-            <DialogHeader className="border-b border-border bg-secondary/40 px-6 py-4">
+          <div className="flex max-h-[90vh] flex-col">
+            <DialogHeader className="shrink-0 border-b border-border bg-secondary/40 px-6 py-4">
               <DialogTitle className="font-display text-lg">Detalhes do Curso</DialogTitle>
             </DialogHeader>
 
-            <div className="grid gap-6 p-6 md:grid-cols-2 md:p-8">
+            <div className="grid gap-6 overflow-y-auto p-6 md:grid-cols-2 md:p-8">
               <div
                 className="relative flex aspect-square items-end overflow-hidden rounded-2xl bg-cover bg-center text-white"
                 style={{ backgroundImage: `url(${course.image})` }}
@@ -2105,7 +2138,7 @@ function CourseModal({
                 </a>
               </div>
             </div>
-          </>
+          </div>
         )}
       </DialogContent>
     </Dialog>
